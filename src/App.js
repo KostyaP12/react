@@ -1,20 +1,21 @@
 import logo from './logo.svg';
 import *as style from './App.module.css';
 import {Message} from "./components/Message";
-import React from "react";
+import {MessageList} from "./components/MessageList";
+import React, {useState} from "react";
 
-const textToMessage = "Any Text"
 
 function App() {
-  return (
-      <div className={style.App}>
-        <Message>
-          {textToMessage}
-        </Message>
-      </div>
-  )
+    const [listMessage, setListMessage] = useState()
 
-
+    return <div>
+        <Message
+            onSubmit={(value) => {
+                setListMessage(value);
+            }}
+        />
+    </div>
 }
+
 
 export default App;
