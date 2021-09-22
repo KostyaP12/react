@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
 import './message.css';
+import {MessageList} from "../MessageList";
+import App from "../../App";
 
 export class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'Будьте любезны, напишите сочинение о вашем любимом DOM-элементе.',
-            author: 'Kostya'
+            text: ' ',
+            author: 'Author'
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({text: event.target.value});
+    handleChange = (event) => {
+        this.setState({text: event.target.value, author: "Author"});
     }
 
-    handleSubmit(event) {
-        alert('Сочинение отправлено: ' + this.state.text);
+    handleSubmit = (event) => {
+        alert('Сочинение отправлено: ' + this.state.text + this.state.author);
+        this.props.parentCallback(this.state);
         event.preventDefault();
     }
 
@@ -29,7 +32,6 @@ export class Message extends React.Component {
                     Сочинение:
                     <textarea name = "text" value={this.state.text} onChange={this.handleChange} />
                 </label>
-                    <input name = "author" type="text"/>
                 <input type="submit" value="Отправить" />
             </form>
         );

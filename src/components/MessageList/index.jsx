@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 
-export class MessageList extends React.Component{
-    constructor(props) {
-        super(props);
-
-    }
+export function MessageList(props) {
+    const [messageList, setMessageList] = useState();
+    setMessageList(...messageList, props)
+    console.log(props)
 }

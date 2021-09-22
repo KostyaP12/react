@@ -5,17 +5,21 @@ import {MessageList} from "./components/MessageList";
 import React, {useState} from "react";
 
 
-function App() {
-    const [listMessage, setListMessage] = useState()
+class App extends React.Component{
+    state = {data: []}
 
-    return <div>
-        <Message
-            onSubmit={(value) => {
-                setListMessage(value);
-            }}
-        />
-    </div>
+    handleCallback = (childData) =>{
+        this.setState({data: childData})
+    }
+
+    render(){
+        return(
+            <div>
+                <Message parentCallback = {this.handleCallback}/>
+
+            </div>
+        data.map((message) =></p>
+        )
+    }
 }
-
-
 export default App;
