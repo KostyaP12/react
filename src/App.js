@@ -1,12 +1,10 @@
-import logo from './logo.svg';
-import *as style from './App.module.css';
 import {Message} from "./components/Message";
 import {MessageList} from "./components/MessageList";
-import React, {useState} from "react";
+import React from "react";
 
 
 class App extends React.Component{
-    state = {message: []}
+    state = {}
 
     handleCallback = (childData) =>{
         this.setState({message: childData})

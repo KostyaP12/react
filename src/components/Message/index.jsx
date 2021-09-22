@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './message.css';
-import {MessageList} from "../MessageList";
-import App from "../../App";
 
 export class Message extends React.Component {
     constructor(props) {
