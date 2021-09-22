@@ -6,19 +6,19 @@ import React, {useState} from "react";
 
 
 class App extends React.Component{
-    state = {data: []}
+    state = {message: []}
 
     handleCallback = (childData) =>{
-        this.setState({data: childData})
+        this.setState({message: childData})
     }
 
     render(){
+        console.log("render app")
         return(
             <div>
+                <MessageList props={this.state.message}/>
                 <Message parentCallback = {this.handleCallback}/>
-
             </div>
-        data.map((message) =></p>
         )
     }
 }

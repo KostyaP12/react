@@ -1,7 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-export function MessageList(props) {
-    const [messageList, setMessageList] = useState();
-    setMessageList(...messageList, props)
-    console.log(props)
+
+export const MessageList = (props) => {
+
+    const [list, setList] = useState(props);
+    //setList([list, props])
+    console.log(setList([list, props]))
+
+    /*useEffect(() => {
+        setList([...list, props])
+    });*/
+return<div>
+    <p></p>
+</div>
 }

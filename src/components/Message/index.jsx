@@ -30,7 +30,7 @@ export class Message extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Сочинение:
-                    <textarea name = "text" value={this.state.text} onChange={this.handleChange} />
+                    <textarea name = "text" value={this.state.text} onChange={this.handleChange}/>
                 </label>
                 <input type="submit" value="Отправить" />
             </form>
