@@ -1,32 +1,27 @@
 import {Message} from "./components/Message";
 import {MessageList} from "./components/MessageList";
-import React from "react";
+import React, {useState} from "react";
 
 
-class App extends React.Component {
-    state = {}
+function App() {
+    const [listMessages, setListMessages] = useState([])
 
-    handleCallback = (message) => {
-        this.setState({message})
-        this.chatRobot(message)
-    }
-    chatRobot = (message) => {
+    const handleCallback = (message) => {
         if (message.author === "Author") {
             let robotMessage = {text: message.text, author: "Robot"}
-            this.setState({robotMessage})
+            setListMessages([...listMessages,message, robotMessage])
         }
     }
 
-    render() {
-        return (
-            <main>
-                <MessageList props={this.state}/>
-                <div className="container">
-                    <Message parentCallback={this.handleCallback}/>
-                </div>
-            </main>
-        )
-    }
+    return (
+        <main>
+            <MessageList props={listMessages}/>
+            <div className="container">
+                <Message parentCallback={handleCallback}/>
+            </div>
+        </main>
+    )
+
 }
 
 export default App;
