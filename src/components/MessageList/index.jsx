@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./messageList.css"
-import {MDBListGroup} from "mdbreact";
 
 
 export const MessageList = (props) => {
+    console.log(props)
     const [list, setList] = useState([]);
     let messageList = [];
     if (props.props.message && props.props.robotMessage) {
