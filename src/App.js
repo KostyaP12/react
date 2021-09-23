@@ -1,8 +1,6 @@
-import * as styles from './App.module.css'
 import {Message} from "./components/Message";
 import {MessageList} from "./components/MessageList";
 import React from "react";
-import {MDBCard, MDBCardBody, MDBCol, MDBListGroup, MDBRow} from "mdbreact";
 
 
 class App extends React.Component {
@@ -23,13 +21,11 @@ class App extends React.Component {
         return (
             <main>
                 <MessageList props={this.state}/>
-
                 <div className="container">
                     <Message parentCallback={this.handleCallback}/>
                 </div>
             </main>
         )
-
     }
 }
 
