@@ -1,23 +1,36 @@
+import * as styles from './App.module.css'
 import {Message} from "./components/Message";
 import {MessageList} from "./components/MessageList";
 import React from "react";
+import {MDBCard, MDBCardBody, MDBCol, MDBListGroup, MDBRow} from "mdbreact";
 
 
-class App extends React.Component{
+class App extends React.Component {
     state = {}
 
-    handleCallback = (childData) =>{
-        this.setState({message: childData})
+    handleCallback = (message) => {
+        this.setState({message})
+        this.chatRobot(message)
+    }
+    chatRobot = (message) => {
+        if (message.author === "Author") {
+            let robotMessage = {text: message.text, author: "Robot"}
+            this.setState({robotMessage})
+        }
     }
 
-    render(){
-        console.log("render app")
-        return(
-            <div>
-                <MessageList props={this.state.message}/>
-                <Message parentCallback = {this.handleCallback}/>
-            </div>
+    render() {
+        return (
+            <main>
+                <MessageList props={this.state}/>
+
+                <div className="container">
+                    <Message parentCallback={this.handleCallback}/>
+                </div>
+            </main>
         )
+
     }
 }
+
 export default App;

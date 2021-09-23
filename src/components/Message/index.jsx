@@ -18,19 +18,19 @@ export class Message extends React.Component {
     }
 
     handleSubmit = (event) => {
-        alert('Сочинение отправлено: ' + this.state.text + this.state.author);
         this.props.parentCallback(this.state);
         event.preventDefault();
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form  className="row" onSubmit={this.handleSubmit}>
                 <label>
-                    Сочинение:
-                    <textarea name = "text" value={this.state.text} onChange={this.handleChange}/>
+                    Сообщение:
+                    <textarea className="form-control col-8 col-sm-9 col-md-8" placeholder="Type your message here..." name="text" value={this.state.text}
+                              onChange={this.handleChange}/>
                 </label>
-                <input type="submit" value="Отправить" />
+                <input className="btn btn-secondary col-4 col-sm-3 col-md-4 m-1" type="submit" value="Отправить"/>
             </form>
         );
     }
