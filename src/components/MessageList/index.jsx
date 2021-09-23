@@ -23,7 +23,7 @@ export const MessageList = (props) => {
 
     return (
         <div className="message border rounded container">
-            {list.map((value) => <div >{value.text} <br/> {value.author}</div>)}
+            {list.map((value) => <div >{value.text} <br/> {value.author}<hr/></div>)}
         </div>
     )
 }
