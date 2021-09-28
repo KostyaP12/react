@@ -7,12 +7,12 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import {uuid} from "uuidv4";
+import {ChatList} from "./components/ChatsList";
 
 const useStyles = makeStyles({
     table: {
@@ -39,14 +39,12 @@ function App() {
 
     const handleCallback = (message) => {
         if (message.author === "Author") {
-            let robotMessage = {key:uuid(), text: message.text, author: "Robot"}
+            let robotMessage = {key: uuid(), text: message.text, author: "Robot"}
             setListMessages([...listMessages, message, robotMessage])
         }
     }
 
-
     const classes = useStyles()
-
 
     return (
         <div>
@@ -58,11 +56,10 @@ function App() {
             <Grid container component={Paper} className={classes.chatSection}>
                 <Grid item xs={3} className={classes.borderRight500}>
                     <List>
-                        <ListItem button key="RemySharp">
+                        <ListItem button key="Author">
                             <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg"/>
                             </ListItemIcon>
-                            <ListItemText primary="John Wick"></ListItemText>
+                            <ListItemText primary="Author"></ListItemText>
                         </ListItem>
                     </List>
                     <Divider/>
@@ -71,25 +68,7 @@ function App() {
                     </Grid>
                     <Divider/>
                     <List>
-                        <ListItem button key="RemySharp">
-                            <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg"/>
-                            </ListItemIcon>
-                            <ListItemText primary="Remy Sharp">Remy Sharp</ListItemText>
-                            <ListItemText secondary="online" align="right"></ListItemText>
-                        </ListItem>
-                        <ListItem button key="Alice">
-                            <ListItemIcon>
-                                <Avatar alt="Alice" src="https://material-ui.com/static/images/avatar/3.jpg"/>
-                            </ListItemIcon>
-                            <ListItemText primary="Alice">Alice</ListItemText>
-                        </ListItem>
-                        <ListItem button key="CindyBaker">
-                            <ListItemIcon>
-                                <Avatar alt="Cindy Baker" src="https://material-ui.com/static/images/avatar/2.jpg"/>
-                            </ListItemIcon>
-                            <ListItemText primary="Cindy Baker">Cindy Baker</ListItemText>
-                        </ListItem>
+                        <ChatList props={listMessages}/>
                     </List>
                 </Grid>
                 <Grid item xs={9}>

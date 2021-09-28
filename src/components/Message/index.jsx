@@ -14,17 +14,26 @@ export class Message extends React.Component {
             text: ' ',
             author: 'Author'
         };
-
+        this.message = {};
+        this.searchInput = React.createRef();
+        this.focusTextInput = this.focusTextInput.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (event) => {
-        this.setState({key: uuid(), text: event.target.value, author: "Author"});
+    focusTextInput() {
+        this.searchInput.current.focus();
     }
 
+    handleChange = (event) => {
+        this.setState({key: uuid(), text: event.target.value, author: "Author"});
+        this.message = this.state
+    }
+
+
     handleSubmit = (event) => {
-        this.props.parentCallback(this.state);
+        this.props.parentCallback(this.message);
+        this.state.text = " "
         event.preventDefault();
     }
 
@@ -33,10 +42,10 @@ export class Message extends React.Component {
             <Grid container style={{padding: '20px'}}>
                 <Grid item xs={11}>
                     <form onSubmit={this.handleSubmit}>
-                        <TextField id="outlined-basic-email" label="Type Something" fullWidth value={this.state.text}
+                        <TextField ref={this.searchInput} autoFocus={true} id="outlined-basic-email" label="Type Something" fullWidth value={this.state.text}
                                    onChange={this.handleChange}/>
                         <Grid item xs={1} align="right">
-                            <Fab type="submit" color="primary" aria-label="add" align="right"><SendIcon/></Fab>
+                            <Fab type="submit" color="primary" aria-label="add" align="right" onClick={this.focusTextInput}><SendIcon/></Fab>
                         </Grid>
                     </form>
                 </Grid>
