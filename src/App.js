@@ -1,6 +1,6 @@
-import {Message} from "./components/SendMessage";
-import {MessageList} from "./components/MessageList";
-import React, {isValidElement, useEffect, useState} from "react";
+import {Message} from "./routes/SendMessage";
+import {MessageList} from "./routes/MessageList";
+import React, {useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
@@ -12,9 +12,12 @@ import TextField from "@material-ui/core/TextField";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import {uuid} from "uuidv4";
-import {ChatList} from "./components/ChatsList";
+import {ChatList} from "./routes/ChatsList";
+import {Routes} from "./routes/Routes";
+import {BrowserRouter} from "react-router-dom";
+import {Header} from "./components/Header";
 
-const useStyles = makeStyles({
+/*const useStyles = makeStyles({
     table: {
         minWidth: 650,
     },
@@ -32,10 +35,10 @@ const useStyles = makeStyles({
         height: '70vh',
         overflowY: 'auto'
     }
-});
+});*/
 
 function App() {
-    const [listMessage, setListMessage] = useState([]);
+    /*const [listMessage, setListMessage] = useState([]);
 
     const handleSubmit = (message) => {
         setListMessage([...listMessage, message])
@@ -51,50 +54,13 @@ function App() {
         }
     }, [listMessage]);
 
-    const classes = useStyles();
+    const classes = useStyles();*/
 
     return (
-        <div>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Typography variant="h5" className="header-message">Chat</Typography>
-                </Grid>
-            </Grid>
-            <Grid container component={Paper} className={classes.chatSection}>
-                <Grid item xs={3} className={classes.borderRight500}>
-                    <List>
-                        <ListItem button key="Author">
-                            <ListItemIcon>
-                            </ListItemIcon>
-                            <ListItemText primary="Author"></ListItemText>
-                        </ListItem>
-                    </List>
-                    <Divider/>
-                    <Grid item xs={12} style={{padding: '10px'}}>
-                        <TextField id="outlined-basic-email" label="Search" variant="outlined" fullWidth/>
-                    </Grid>
-                    <Divider/>
-                    <List>
-                        <ChatList props={listMessage}/>
-                    </List>
-                </Grid>
-                <Grid item xs={9}>
-                    <List className={classes.messageArea}>
-                        <ListItem>
-                            <Grid container>
-                                <Grid item xs={12}>
-                                    <MessageList props={listMessage}/>
-                                </Grid>
-                            </Grid>
-                        </ListItem>
-                    </List>
-                    <Divider/>
-                    <Grid container style={{padding: '20px'}}>
-                        <Message parentCallback={handleSubmit}/>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </div>
+        <BrowserRouter>
+            <Header/>
+            <Routes/>
+        </BrowserRouter>
     )
 }
 
