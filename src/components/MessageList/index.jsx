@@ -3,9 +3,9 @@ import "./messageList.css"
 import ListItemText from "@material-ui/core/ListItemText";
 
 
-export const MessageList = (props) => {
+export const MessageList = (listMessage) => {
 
     return (
-        <ListItemText> {props.props.map((value) => <div key={value.key}> {value.text} <br/> {value.author}<hr/></div>)}</ListItemText>
+        <ListItemText> {listMessage.props.map((value) => <div key={value.key}> {value.text} <br/> {value.author}<hr/></div>)}</ListItemText>
     )
 }

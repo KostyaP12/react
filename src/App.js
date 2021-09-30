@@ -1,6 +1,6 @@
-import {Message} from "./components/Message";
+import {Message} from "./components/SendMessage";
 import {MessageList} from "./components/MessageList";
-import React, {useState} from "react";
+import React, {isValidElement, useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
@@ -35,16 +35,23 @@ const useStyles = makeStyles({
 });
 
 function App() {
-    const [listMessages, setListMessages] = useState([])
+    const [listMessage, setListMessage] = useState([]);
 
-    const handleCallback = (message) => {
-        if (message.author === "Author") {
-            let robotMessage = {key: uuid(), text: message.text, author: "Robot"}
-            setListMessages([...listMessages, message, robotMessage])
+    const handleSubmit = (message) => {
+        setListMessage([...listMessage, message])
+    };
+
+    useEffect(() => {
+        let lastMessage = listMessage[listMessage.length - 1];
+        if (lastMessage !== undefined) {
+            if (lastMessage.author !== "Robot") {
+                let robotMessage = {key: uuid(), text: lastMessage.text, author: "Robot"}
+                setListMessage([...listMessage, robotMessage])
+            }
         }
-    }
+    }, [listMessage]);
 
-    const classes = useStyles()
+    const classes = useStyles();
 
     return (
         <div>
@@ -68,7 +75,7 @@ function App() {
                     </Grid>
                     <Divider/>
                     <List>
-                        <ChatList props={listMessages}/>
+                        <ChatList props={listMessage}/>
                     </List>
                 </Grid>
                 <Grid item xs={9}>
@@ -76,14 +83,14 @@ function App() {
                         <ListItem>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <MessageList props={listMessages}/>
+                                    <MessageList props={listMessage}/>
                                 </Grid>
                             </Grid>
                         </ListItem>
                     </List>
                     <Divider/>
                     <Grid container style={{padding: '20px'}}>
-                        <Message parentCallback={handleCallback}/>
+                        <Message parentCallback={handleSubmit}/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -91,11 +98,4 @@ function App() {
     )
 }
 
-
-/*<Grid container spacing={2}>
-    <MessageList props={listMessages}/>
-    <Grid item xs={6} md={8}>
-        <Message parentCallback={handleCallback}/>
-    </Grid>
-</Grid>*/
 export default App;
