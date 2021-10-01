@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {uuid} from "uuidv4";
 import {makeStyles} from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
@@ -35,34 +35,22 @@ const useStyles = makeStyles({
 });
 
 export function Chat() {
-    const [currentChat, setCurrentChat] = useState([{}]);
-    const [chats, setChats] = useState([]);
-    let id;
+    const [listMessage, setListMessage] = useState([]);
 
-    const handleSelectChat = useCallback((id)=>{
-        for(let i = 0; i < chats.length; i++){
-            if(chats[i].id === id){
-                setCurrentChat(chats[i])
-            }
-        }
-    },[currentChat]);
-
-
-    const handleSendMessages = (message) => {
-        setCurrentChat([...currentChat, message])
+    const handleSubmit = (message) => {
+        setListMessage([...listMessage, message])
     };
 
-
-
     useEffect(() => {
-        let lastMessage = currentChat[currentChat.length - 1];
+        let lastMessage = listMessage[listMessage.length - 1];
         if (lastMessage !== undefined) {
             if (lastMessage.author !== "Robot") {
                 let robotMessage = {key: uuid(), text: lastMessage.text, author: "Robot"}
-                setCurrentChat([...currentChat, robotMessage])
+                setListMessage([...listMessage, robotMessage])
             }
         }
-    }, [currentChat]);
+    }, [listMessage]);
+
     const classes = useStyles();
 
     return (
@@ -85,7 +73,7 @@ export function Chat() {
                     </Grid>
                     <Divider/>
                     <List>
-                        <ChatList props={currentChat} chatMessageCallback={handleSelectChat()}/>
+                        <ChatList props={listMessage}/>
                     </List>
                 </Grid>
                 <Grid item xs={9}>
@@ -93,14 +81,14 @@ export function Chat() {
                         <ListItem>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <MessageList props={currentChat}/>
+                                    <MessageList props={listMessage}/>
                                 </Grid>
                             </Grid>
                         </ListItem>
                     </List>
                     <Divider/>
                     <Grid container style={{padding: '20px'}}>
-                        <Message parentCallback={handleSendMessages}/>
+                        <Message parentCallback={handleSubmit}/>
                     </Grid>
                 </Grid>
             </Grid>
