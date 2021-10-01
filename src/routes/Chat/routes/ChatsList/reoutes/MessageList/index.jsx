@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./messageList.css"
 import ListItemText from "@material-ui/core/ListItemText";
 

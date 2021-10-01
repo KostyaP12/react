@@ -9,9 +9,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
-import {ChatList} from "../ChatsList";
-import {MessageList} from "../MessageList";
-import {Message} from "../SendMessage";
+import {ChatList} from "./routes/ChatsList";
+import {MessageList} from "./routes/ChatsList/reoutes/MessageList";
+import {Message} from "./routes/SendMessage";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({

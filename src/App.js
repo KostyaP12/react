@@ -1,5 +1,5 @@
-import {Message} from "./routes/SendMessage";
-import {MessageList} from "./routes/MessageList";
+import {Message} from "./routes/Chat/routes/SendMessage";
+import {MessageList} from "./routes/Chat/routes/ChatsList/reoutes/MessageList";
 import React, {useEffect, useState} from "react";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
@@ -12,7 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 import {uuid} from "uuidv4";
-import {ChatList} from "./routes/ChatsList";
+import {ChatList} from "./routes/Chat/routes/ChatsList";
 import {Routes} from "./routes/Routes";
 import {BrowserRouter} from "react-router-dom";
 import {Header} from "./components/Header";
