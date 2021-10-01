@@ -14,9 +14,9 @@ import {MessageList} from "./reoutes/MessageList";
 
 export const ChatList = (props) => {
     const [chatID, setChatID] = useState(0);
-    const [chatList, setChatList] = useState([{name: chatID, id: chatID, messageList: [props]}])
+    const [chatList, setChatList] = useState([])
 
-
+console.log(chatList)
     function addChat() {
         setChatID(chatID + 1);
         setChatList([...chatList, {name: chatID, id: chatID, messageList: []}])
