@@ -8,13 +8,11 @@ import Box from "@material-ui/core/Box";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import {getChatByIDPath} from "../../../../navigation";
-import {Link, Route} from "react-router-dom";
-import Switch from "@material-ui/core/Switch";
-import {MessageList} from "./reoutes/MessageList";
+import {Link} from "react-router-dom";
 
-export const ChatList = (props) => {
+export const ChatList = (messageList) => {
     const [chatID, setChatID] = useState(0);
-    const [chatList, setChatList] = useState([{name: chatID, id: chatID, messageList: [props]}])
+    const [chatList, setChatList] = useState([{name: chatID, id: chatID, messageList: [{text: " ", author: ""}]}])
 
 
     function addChat() {
@@ -22,13 +20,10 @@ export const ChatList = (props) => {
         setChatList([...chatList, {name: chatID, id: chatID, messageList: []}])
     }
 
-    /*function handleSubmit(id){
-        for(let i = 0; i < chatList.length; i++ ){
-            if(chatList[i].id === id){
-                props.parentCallback(chatList[i]);
-            }
-        }
-    }*/
+    const handleCurrentChat = (event) =>{
+       messageList.chatMessageCallback(chatID);
+        event.preventDefault();
+    }
 
     return (
         <Box sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}>
@@ -38,7 +33,7 @@ export const ChatList = (props) => {
             <List component="nav" aria-label="secondary mailbox folder">
                 {
                     chatList.map((item) =>
-                        <ListItem button component={Link} to={getChatByIDPath(chatID)}>
+                        <ListItem button component={Link} to={getChatByIDPath(chatID)} /*onClick={event => {handleCurrentChat(event)}}*/>
                             <ListItemText primary={item.name}/>
                         </ListItem>)
                 }
