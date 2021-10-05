@@ -68,7 +68,7 @@ function App() {
                     </Grid>
                     <Divider/>
                     <List>
-                        <ChatList props={listMessages}/>
+                        <ChatList chat={listMessages}/>
                     </List>
                 </Grid>
                 <Grid item xs={9}>
@@ -90,12 +90,4 @@ function App() {
         </div>
     )
 }
-
-
-/*<Grid container spacing={2}>
-    <MessageList props={listMessages}/>
-    <Grid item xs={6} md={8}>
-        <Message parentCallback={handleCallback}/>
-    </Grid>
-</Grid>*/
 export default App;
