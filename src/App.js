@@ -1,20 +1,25 @@
-import logo from './logo.svg';
-import *as style from './App.module.css';
 import {Message} from "./components/Message";
-import React from "react";
+import {MessageList} from "./components/MessageList";
+import React, {useState} from "react";
 
-const textToMessage = "Any Text"
 
 function App() {
-  return (
-      <div className={style.App}>
-        <Message>
-          {textToMessage}
-        </Message>
-      </div>
-  )
+    const [listMessages, setListMessages] = useState([])
 
+    const handleCallback = (message) => {
+        if (message.author === "Author") {
+            let robotMessage = {text: message.text, author: "Robot"}
+            setListMessages([...listMessages,message, robotMessage])
+        }
+    }
 
+    return (
+        <main>
+            <MessageList props={listMessages}/>
+            <div className="container">
+                <Message parentCallback={handleCallback}/>
+            </div>
+        </main>
+    )
 }
-
 export default App;
